@@ -1,29 +1,34 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
-  </div>
+  <main>
+    <AppBar @toogle-menu="toogleMenu" />
+    <SideMenu :open.sync="openSideMenu" />
+  </main>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from './components/HelloWorld.vue';
+import { Component, Vue } from "vue-property-decorator";
+import SideMenu from "@/components/SideMenu.vue";
+import AppBar from "@/components/AppBar.vue";
 
 @Component({
   components: {
-    HelloWorld,
+    SideMenu,
+    AppBar,
   },
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  public openSideMenu = false;
+
+  public toogleMenu() {
+    this.openSideMenu = !this.openSideMenu;
+  }
+}
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 </style>
